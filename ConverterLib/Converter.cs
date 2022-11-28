@@ -8,11 +8,13 @@ namespace ConverterLib
         public Converter()
         {
             SetValuesList();
+            
         }
         /// <summary>
         /// Список физических величин
         /// </summary>
         private static List<IValue> _physicValues = new List<IValue>();
+        
         
         private static void SetValuesList()
         {
@@ -40,6 +42,8 @@ namespace ConverterLib
             }
             return physicValueList;
         }
+        private IValue _value;
+        
         private void SetIValue(string valueName)
         {
             foreach (var value in _physicValues)
@@ -48,10 +52,10 @@ namespace ConverterLib
                 {
                     _value = value;
                 }
-                if (_value == null)
-                {
-                    throw new Exception("Ошибка! В библиотеки нет такой величины");
-                }
+                //else
+                //{
+                //    throw new Exception("Ошибка! В библиотеки нет такой величины");
+                //}
             }
         }
         /// <summary>
@@ -62,9 +66,12 @@ namespace ConverterLib
         public List<string> GetMeassureList(string physicValue)
         {
             SetIValue(physicValue);
-            return _value.GetMeassureList();
+            List<string> list = new List<string>();
+            foreach (var str in _value.GetCoefficients())
+                list.Add(str.Key);
+            return list;
         }
-        private IValue _value;
+        
         /// <summary>
         /// Возвращает конвертированное значение
         /// </summary>
@@ -75,8 +82,10 @@ namespace ConverterLib
         /// <returns>конвертированное значение</returns>
         public double GetConvertedValue(string physicValue,double value, string from, string to)
         {
-            
-            return _value.GetConvertedValue(physicValue, value, from, to); 
+            SetIValue(physicValue);
+            value *=_value.GetCoefficients()[from];
+            value /= _value.GetCoefficients()[to];
+            return value; 
         }
        
     }
