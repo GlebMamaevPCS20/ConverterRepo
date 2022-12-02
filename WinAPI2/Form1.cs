@@ -49,11 +49,20 @@ namespace WinAPI2
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            string physicValue = listBox1.SelectedItem.ToString();
-            double value = Convert.ToDouble(textBox1.Text);
-            string from = listBox2.SelectedItem.ToString();
-            string to = listBox3.SelectedItem.ToString();
-            textBox2.Text = (converter.GetConvertedValue(physicValue, value, from, to)).ToString();
+            try
+            {
+
+
+                string physicValue = listBox1.SelectedItem.ToString();
+                double value = Convert.ToDouble(textBox1.Text);
+                string from = listBox2.SelectedItem.ToString();
+                string to = listBox3.SelectedItem.ToString();
+                textBox2.Text = (converter.GetConvertedValue(physicValue, value, from, to)).ToString();
+            }
+            catch (Exception ex)
+            {
+                textBox2.Text = "¬ведите число!";
+            }
         }
     }
 }

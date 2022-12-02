@@ -3,30 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ValuesLib;
 
 namespace ConverterLib.Values
 {
-    public class Weight : IValue
+    internal class Weight : AnyValue
     {
-        private string _valueName = "Вес";
-
-        public string GetValueName()
+        public Weight()
         {
-            return _valueName;
-        }
+            ValueName = "Вес";
+            CoefficientsAndMeasuresList = new Dictionary<string, double>()
+            {
 
-        
-
-        private Dictionary<string, double> _coef = new Dictionary<string, double>()
-        {
-            {"Килограммы", 1},
-            {"граммы", 0.001},
-            {"Тонны", 1000},
-            {"Центнеры", 100},
-        };
-        public Dictionary<string, double> GetCoefficients()
-        {
-            return _coef;
+                {"Килограммы", 1},
+                {"граммы", 0.001},
+                {"Тонны", 1000},
+                {"Центнеры", 100},
+            };
         }
     }
+   
 }

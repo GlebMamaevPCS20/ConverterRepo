@@ -3,27 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ValuesLib;
 
 namespace ConverterLib.Values
 {
-    public class Time : IValue
+    internal class Time : AnyValue
     {
-        private string _valueName = "Время";
-        public string GetValueName()
+        public Time()
         {
-            return _valueName;
-        }
-        private Dictionary<string, double> _coef = new Dictionary<string, double>()
-        {
-            {"Секунды", 1},
-            {"Милиекунды", 0.001},
-            {"Минуты", 60},
-            {"Часы", 3600}
-        };
+            ValueName = "Время";
+            CoefficientsAndMeasuresList = new Dictionary<string, double>()
+            {
 
-        public Dictionary<string, double> GetCoefficients()
-        {
-            return _coef;
+                { "Секунды",        1       },
+                { "Милисекунды",    0.001   },
+                { "Минуты",         60      },
+                { "Часы",           60 * 60 },
+            };
         }
 
         

@@ -22,7 +22,7 @@ namespace ConverterLib
             Type[] types = asm.GetTypes();
             foreach (Type type in types)
             {
-                if ((type.IsInterface == false) && (type.IsAbstract == false) && (type.GetInterface("IValue") != null))
+                if ((type.IsInterface == false) && (type.IsAbstract == false) && (type.Name != ("AnyValue")) && (type.GetInterface("IValue") != null))
                 {
                     IValue value = (IValue)Activator.CreateInstance(type);
                     _physicValues.Add(value);
