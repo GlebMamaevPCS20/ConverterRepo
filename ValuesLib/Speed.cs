@@ -3,32 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ValuesLib;
 
 namespace ConverterLib.Values
 {
-    public class Speed : IValue
+    internal class Speed : AnyValue
     {
-        private string _valueName = "Скорость";
-        public string GetValueName()
+        public Speed()
         {
-            return _valueName;
+            ValueName = "Скорость";
+            CoefficientsAndMeasuresList = new Dictionary<string, double>()
+            {
+
+                {"Км в час", 0.27778 },
+                {"Метры в секунду", 1 },
+                {"Километры в секунду", 1000 },
+            };
         }
-       
-        
-        Dictionary<string, double> _coef = new Dictionary<string, double>()
-        {
-            {"Км в час", 3600 },
-            {"Метры в секунду", 1 },
-            {"Километры в секунду", 1000 },
-            
 
 
-        };
-        public Dictionary<string, double> GetCoefficients()
-        {
-            return _coef;
-        }
-        
-        
     }
+   
 }
